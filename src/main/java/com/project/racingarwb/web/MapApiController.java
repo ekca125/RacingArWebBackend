@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class MapApiController {
     private final MapService mapService;
 
-    //post
     @GetMapping("/api/v1/address/findById/{id}")
     public MapFlagDto findById(@PathVariable Long id){
         return mapService.findById(id);
+    }
+
+    @GetMapping("/api/v1/address/getRandomFlag")
+    public MapFlagDto getRandomFlag(){
+        return mapService.getRandomFlag();
     }
 }

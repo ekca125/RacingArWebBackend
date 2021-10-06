@@ -6,6 +6,8 @@ import com.project.racingarwb.web.dto.MapFlagDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @RequiredArgsConstructor
 @Service
 public class MapService {
@@ -20,5 +22,15 @@ public class MapService {
                 entity.getLatitude(),
                 entity.getLongitude()
         );
+    }
+
+    public MapFlagDto getRandomFlag(){
+        Long count = roadAddressRepository.count();
+
+        Random random = new Random();
+        random.setSeed(System.currentTimeMillis());
+
+        Long id = random.nextLong(count - 1);
+        return findById(id);
     }
 }
