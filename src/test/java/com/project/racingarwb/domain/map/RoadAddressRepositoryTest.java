@@ -1,5 +1,6 @@
 package com.project.racingarwb.domain.map;
 
+import com.project.racingarwb.web.dto.MapRangeRequestDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,6 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class RoadAddressRepositoryTest {
 
@@ -14,14 +16,33 @@ class RoadAddressRepositoryTest {
     private RoadAddressRepository roadAddressRepository;
 
     @Test
-    void findId() {
+    void findId() throws Exception{
         RoadAddress entity = roadAddressRepository
                 .findById(1L)
                 .orElseThrow(() -> new IllegalArgumentException("해당 ID가 존재하지 않습니다. id = " + 1));
     }
 
     @Test
-    void queryRange() {
+    void testCount() throws Exception{
+        Long count = roadAddressRepository.count();
+        assertThat(count).isGreaterThan(1L);
+    }
 
+    @Test
+    void testQueryMapRange() {
+        MapRangeRequestDto mapRangeRequestDto = MapRangeRequestDto.builder()
+                .startLatitude(35.0979529784)
+                .startLongitude(129.0290353612)
+                .endLatitude(35.1066801454)
+                .endLongitude(129.0219886069)
+                .build();
+
+        var roadAddressList = roadAddressRepository.queryRange(
+                mapRangeRequestDto.getStartLatitude(),
+                mapRangeRequestDto.getStartLongitude(),
+                mapRangeRequestDto.getEndLatitude(),
+                mapRangeRequestDto.getEndLongitude());
+
+        assertThat((long) roadAddressList.size()).isGreaterThan(1L);
     }
 }
