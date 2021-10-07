@@ -6,6 +6,7 @@ import com.project.racingarwb.web.dto.MapFlagDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class MapService {
         );
     }
 
-    public MapFlagDto randomFlag() {
+    public MapFlagDto sampleFlag() {
         Long count = roadAddressRepository.count();
 
         Random random = new Random();
@@ -36,7 +37,7 @@ public class MapService {
         return find(id);
     }
 
-    public List<MapFlagDto> rangeMap(Double startLatitude, Double startLongitude, Double endLatitude, Double endLongitude){
+    public List<MapFlagDto> mapFlag(Double startLatitude, Double startLongitude, Double endLatitude, Double endLongitude){
         return roadAddressRepository.queryRange(startLatitude,  startLongitude,  endLatitude,  endLongitude)
                 .stream()
                 .map((entity)->new MapFlagDto(
@@ -48,8 +49,10 @@ public class MapService {
     }
 
     public List<MapFlagDto> randomMap(Double startLatitude, Double startLongitude, Double endLatitude, Double endLongitude, long limit){
-        return rangeMap(startLatitude,  startLongitude,  endLatitude,  endLongitude)
-                .stream()
+        List<MapFlagDto> mapFlagDtoList = mapFlag(startLatitude,  startLongitude,  endLatitude,  endLongitude);
+        Collections.shuffle(mapFlagDtoList);
+
+        return mapFlagDtoList.stream()
                 .limit(limit)
                 .collect(Collectors.toList());
     }

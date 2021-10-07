@@ -18,22 +18,22 @@ public class MapApiController {
         return mapService.find(id);
     }
 
-    @GetMapping("/api/v1/address/allRandomFlag")
-    public MapFlagDto randomFlag() {
-        return mapService.randomFlag();
+    @GetMapping("/api/v1/address/sampleFlag")
+    public MapFlagDto sampleFlag() {
+        return mapService.sampleFlag();
     }
 
     @PostMapping("/api/v1/address/rangeMap")
-    public List<MapFlagDto> mapRange(@RequestBody Map<String,Double> param){
+    public List<MapFlagDto> mapFlag(@RequestBody Map<String,Double> param){
         Double startLatitude = param.get("startLatitude");
         Double startLongitude= param.get("startLongitude");
         Double endLatitude= param.get("endLatitude");
         Double endLongitude= param.get("endLongitude");
-        return mapService.rangeMap( startLatitude,  startLongitude,  endLatitude,  endLongitude);
+        return mapService.mapFlag( startLatitude,  startLongitude,  endLatitude,  endLongitude);
     }
 
     @PostMapping("/api/v1/address/randomFlag10")
-    public List<MapFlagDto> randomMap(@RequestBody Map<String,Double> param){
+    public List<MapFlagDto> randomFlag10(@RequestBody Map<String,Double> param){
         Double startLatitude = param.get("startLatitude");
         Double startLongitude= param.get("startLongitude");
         Double endLatitude= param.get("endLatitude");

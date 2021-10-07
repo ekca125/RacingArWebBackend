@@ -24,7 +24,7 @@ public class HttpRequestTest {
 
     @Test
     public void getRandomFlagJsonMessage() throws Exception {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/address/randomFlag",
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/address/sampleFlag",
                 String.class)).contains("latitude");
     }
 
