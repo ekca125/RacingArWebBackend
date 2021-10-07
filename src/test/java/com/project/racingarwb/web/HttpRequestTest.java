@@ -18,13 +18,13 @@ public class HttpRequestTest {
 
     @Test
     public void findByIdJsonMessage() throws Exception {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/address/1",
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/address/find/id=1",
                 String.class)).contains("latitude");
     }
 
     @Test
     public void getRandomFlagJsonMessage() throws Exception {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/address/random",
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/address/randomFlag",
                 String.class)).contains("latitude");
     }
 

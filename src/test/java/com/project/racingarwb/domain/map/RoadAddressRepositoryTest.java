@@ -1,12 +1,8 @@
 package com.project.racingarwb.domain.map;
 
-import com.project.racingarwb.web.dto.MapRangeRequestDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
@@ -30,18 +26,16 @@ class RoadAddressRepositoryTest {
 
     @Test
     void testQueryMapRange() {
-        MapRangeRequestDto mapRangeRequestDto = MapRangeRequestDto.builder()
-                .startLatitude(35.0979529784)
-                .startLongitude(129.0219886069)
-                .endLatitude(35.1066801454)
-                .endLongitude(129.0290353612)
-                .build();
+        Double startLatitude = 35.0979529784;
+        Double startLongitude = 129.0219886069;
+        Double endLatitude = 35.1066801454;
+        Double endLongitude = 129.0290353612;
 
         var roadAddressList = roadAddressRepository.queryRange(
-                mapRangeRequestDto.getStartLatitude(),
-                mapRangeRequestDto.getStartLongitude(),
-                mapRangeRequestDto.getEndLatitude(),
-                mapRangeRequestDto.getEndLongitude());
+                startLatitude,
+                startLongitude,
+                endLatitude,
+                endLongitude);
 
         assertThat((long) roadAddressList.size()).isGreaterThan(1L);
     }
