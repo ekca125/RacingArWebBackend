@@ -32,9 +32,9 @@ class RoadAddressRepositoryTest {
     void testQueryMapRange() {
         MapRangeRequestDto mapRangeRequestDto = MapRangeRequestDto.builder()
                 .startLatitude(35.0979529784)
-                .startLongitude(129.0290353612)
+                .startLongitude(129.0219886069)
                 .endLatitude(35.1066801454)
-                .endLongitude(129.0219886069)
+                .endLongitude(129.0290353612)
                 .build();
 
         var roadAddressList = roadAddressRepository.queryRange(
