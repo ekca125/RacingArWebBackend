@@ -27,4 +27,5 @@ public class HttpRequestTest {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/address/random",
                 String.class)).contains("latitude");
     }
+
 }

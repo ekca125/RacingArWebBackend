@@ -16,10 +16,10 @@ import java.util.Random;
 public class MapService {
     private final RoadAddressRepository roadAddressRepository;
 
-    public MapFlagDto findById(Long id){
+    public MapFlagDto findById(Long id) {
         RoadAddress entity = roadAddressRepository
                 .findById(id)
-                .orElseThrow(()->new IllegalArgumentException("해당 ID가 존재하지 않습니다. id = "+id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 ID가 존재하지 않습니다. id = " + id));
         return new MapFlagDto(
                 entity.getId(),
                 entity.getLatitude(),
@@ -27,7 +27,7 @@ public class MapService {
         );
     }
 
-    public MapFlagDto getRandomFlag(){
+    public MapFlagDto getRandomFlag() {
         Long count = roadAddressRepository.count();
 
         Random random = new Random();
@@ -37,17 +37,12 @@ public class MapService {
         return findById(id);
     }
 
-    public MapFlagDto getRandomFlagWithLatitudeLongitude(MapRangeRequestDto mapRangeRequestDto){
-        List<RoadAddress> roadAddressList= roadAddressRepository.queryRange(
-                        mapRangeRequestDto.getStartLatitude(),
+    public MapFlagDto getRandomFlagWithLatitudeLongitude(MapRangeRequestDto mapRangeRequestDto) {
+        List<RoadAddress> roadAddressList = roadAddressRepository.queryRange(
+                mapRangeRequestDto.getStartLatitude(),
                 mapRangeRequestDto.getStartLongitude(),
                 mapRangeRequestDto.getEndLatitude(),
                 mapRangeRequestDto.getEndLongitude());
-        roadAddressList= roadAddressRepository.queryRange(
-                1.0,
-                1.0,
-                1000.0,
-                1000.0);
 
         // size is 0 ->
         Collections.shuffle(roadAddressList);

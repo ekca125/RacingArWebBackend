@@ -17,17 +17,17 @@ public class MapApiController {
     private final MapService mapService;
 
     @GetMapping("/api/v1/address/{id}")
-    public MapFlagDto findById(@PathVariable Long id){
+    public MapFlagDto findById(@PathVariable Long id) {
         return mapService.findById(id);
     }
 
     @GetMapping("/api/v1/address/random")
-    public MapFlagDto getRandomFlag(){
+    public MapFlagDto getRandomFlag() {
         return mapService.getRandomFlag();
     }
 
     @PostMapping("/api/v1/address/randomWithLatitudeLongitude")
-    public MapFlagDto getRandomFlagWithLatitudeLongitude(MapRangeRequestDto mapRangeRequestDto){
+    public MapFlagDto getRandomFlagWithLatitudeLongitude(MapRangeRequestDto mapRangeRequestDto) {
         return mapService.getRandomFlagWithLatitudeLongitude(mapRangeRequestDto);
     }
 }
