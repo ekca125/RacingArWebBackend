@@ -1,4 +1,4 @@
-package com.project.racingarwb.domain.map;
+package com.project.racingarweb.domain.map;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

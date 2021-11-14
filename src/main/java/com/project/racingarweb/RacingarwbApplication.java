@@ -1,4 +1,4 @@
-package com.project.racingarwb;
+package com.project.racingarweb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

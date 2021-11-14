@@ -1,4 +1,4 @@
-package com.project.racingarwb.web.dto;
+package com.project.racingarweb.web.dto;
 
 public record MapFlagDto(Long id, Double latitude, Double longitude) {
 }

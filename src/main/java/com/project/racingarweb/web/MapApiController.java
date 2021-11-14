@@ -1,7 +1,7 @@
-package com.project.racingarwb.web;
+package com.project.racingarweb.web;
 
-import com.project.racingarwb.service.map.MapService;
-import com.project.racingarwb.web.dto.MapFlagDto;
+import com.project.racingarweb.service.map.MapService;
+import com.project.racingarweb.web.dto.MapFlagDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

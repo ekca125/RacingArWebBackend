@@ -1,4 +1,4 @@
-package com.project.racingarwb.domain.map;
+package com.project.racingarweb.domain.map;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

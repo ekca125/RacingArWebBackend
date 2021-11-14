@@ -1,4 +1,4 @@
-package com.project.racingarwb.web;
+package com.project.racingarweb.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

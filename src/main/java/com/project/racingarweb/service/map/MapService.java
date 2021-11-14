@@ -1,8 +1,8 @@
-package com.project.racingarwb.service.map;
+package com.project.racingarweb.service.map;
 
-import com.project.racingarwb.domain.map.RoadAddress;
-import com.project.racingarwb.domain.map.RoadAddressRepository;
-import com.project.racingarwb.web.dto.MapFlagDto;
+import com.project.racingarweb.domain.map.RoadAddress;
+import com.project.racingarweb.domain.map.RoadAddressRepository;
+import com.project.racingarweb.web.dto.MapFlagDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class MapService {
         Random random = new Random();
         random.setSeed(System.currentTimeMillis());
 
-        Long id = random.nextLong(count - 1);
+        Long id = random.nextLong();
         return find(id);
     }
 
