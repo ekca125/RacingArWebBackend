@@ -13,14 +13,14 @@ class RoadAddressRepositoryTest {
     private RoadAddressRepository roadAddressRepository;
 
     @Test
-    void findId() throws Exception {
+    void id() throws Exception {
         RoadAddress entity = roadAddressRepository
                 .findById(1L)
                 .orElseThrow(() -> new IllegalArgumentException("해당 ID가 존재하지 않습니다. id = " + 1));
     }
 
     @Test
-    void testCount() throws Exception {
+    void count() throws Exception {
         Long count = roadAddressRepository.count();
         assertThat(count).isGreaterThan(1L);
     }
