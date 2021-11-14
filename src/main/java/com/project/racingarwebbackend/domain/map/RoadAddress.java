@@ -1,4 +1,4 @@
-package com.project.racingarweb.domain.map;
+package com.project.racingarwebbackend.domain.map;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

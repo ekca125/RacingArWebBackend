@@ -1,8 +1,8 @@
-package com.project.racingarweb.service.map;
+package com.project.racingarwebbackend.service.map;
 
-import com.project.racingarweb.domain.map.RoadAddress;
-import com.project.racingarweb.domain.map.RoadAddressRepository;
-import com.project.racingarweb.web.dto.MapFlagDto;
+import com.project.racingarwebbackend.domain.map.RoadAddress;
+import com.project.racingarwebbackend.domain.map.RoadAddressRepository;
+import com.project.racingarwebbackend.web.dto.MapFlagDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

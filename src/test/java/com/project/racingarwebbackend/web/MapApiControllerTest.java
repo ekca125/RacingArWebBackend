@@ -1,6 +1,6 @@
-package com.project.racingarweb.web;
+package com.project.racingarwebbackend.web;
 
-import com.project.racingarweb.web.dto.MapFlagDto;
+import com.project.racingarwebbackend.web.dto.MapFlagDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
