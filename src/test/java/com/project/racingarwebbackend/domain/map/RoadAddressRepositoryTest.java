@@ -39,5 +39,13 @@ class RoadAddressRepositoryTest {
                 endLongitude);
 
         assertThat((long) roadAddressList.size()).isGreaterThan(1L);
+        roadAddressList.stream().forEach((roadAddress)->{
+            // latitude
+            assertThat(roadAddress.getLatitude()).isGreaterThanOrEqualTo(startLatitude);
+            assertThat(roadAddress.getLatitude()).isLessThanOrEqualTo(endLatitude);
+            // longitude
+            assertThat(roadAddress.getLongitude()).isGreaterThanOrEqualTo(startLongitude);
+            assertThat(roadAddress.getLongitude()).isLessThanOrEqualTo(endLongitude);
+        });
     }
 }
