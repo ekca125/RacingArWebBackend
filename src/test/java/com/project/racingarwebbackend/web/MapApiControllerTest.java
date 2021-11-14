@@ -1,10 +1,14 @@
 package com.project.racingarwebbackend.web;
 
+import com.project.racingarwebbackend.web.dto.MapFlagDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,9 +40,34 @@ class MapApiControllerTest {
         Double endLatitude = 35.1066801454;
         Double endLongitude = 129.0290353612;
 
+        String url = "http://localhost:" + port + "/api/v1/address/range";
+        Map<String, Double> param = new HashMap<>();
+        param.put("startLatitude",startLatitude);
+        param.put("startLongitude",startLongitude);
+        param.put("endLatitude",endLatitude);
+        param.put("endLongitude",endLongitude);
+
+        String response = this.restTemplate.postForEntity(url,param,String.class).toString();
+        assertThat(response).contains("latitude");
     }
 
     @Test
     void rangeAddressRandom() {
+        Double startLatitude = 35.0979529784;
+        Double startLongitude = 129.0219886069;
+        Double endLatitude = 35.1066801454;
+        Double endLongitude = 129.0290353612;
+        long limit = 10;
+
+        String url = "http://localhost:" + port + "/api/v1/address/range-random";
+        Map<String, Double> param = new HashMap<>();
+        param.put("startLatitude",startLatitude);
+        param.put("startLongitude",startLongitude);
+        param.put("endLatitude",endLatitude);
+        param.put("endLongitude",endLongitude);
+        param.put("limit", (double) limit);
+
+        String response = this.restTemplate.postForEntity(url,param,String.class).toString();
+        assertThat(response).contains("latitude");
     }
 }
