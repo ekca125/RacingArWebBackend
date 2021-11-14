@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RacingarwbApplication {
+public class RacingArWebBackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RacingarwbApplication.class, args);
+        SpringApplication.run(RacingArWebBackendApplication.class, args);
     }
 
 }
