@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 class RoadAddressRepositoryTest {
 
@@ -12,14 +13,14 @@ class RoadAddressRepositoryTest {
     private RoadAddressRepository roadAddressRepository;
 
     @Test
-    void findId() throws Exception{
+    void findId() throws Exception {
         RoadAddress entity = roadAddressRepository
                 .findById(1L)
                 .orElseThrow(() -> new IllegalArgumentException("해당 ID가 존재하지 않습니다. id = " + 1));
     }
 
     @Test
-    void testCount() throws Exception{
+    void testCount() throws Exception {
         Long count = roadAddressRepository.count();
         assertThat(count).isGreaterThan(1L);
     }

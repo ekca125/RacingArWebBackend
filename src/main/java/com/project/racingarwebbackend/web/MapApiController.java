@@ -24,20 +24,20 @@ public class MapApiController {
     }
 
     @PostMapping("/api/v1/address/rangeMap")
-    public List<MapFlagDto> mapFlag(@RequestBody Map<String,Double> param){
+    public List<MapFlagDto> mapFlag(@RequestBody Map<String, Double> param) {
         Double startLatitude = param.get("startLatitude");
-        Double startLongitude= param.get("startLongitude");
-        Double endLatitude= param.get("endLatitude");
-        Double endLongitude= param.get("endLongitude");
-        return mapService.mapFlag( startLatitude,  startLongitude,  endLatitude,  endLongitude);
+        Double startLongitude = param.get("startLongitude");
+        Double endLatitude = param.get("endLatitude");
+        Double endLongitude = param.get("endLongitude");
+        return mapService.mapFlag(startLatitude, startLongitude, endLatitude, endLongitude);
     }
 
     @PostMapping("/api/v1/address/randomFlag10")
-    public List<MapFlagDto> randomFlag10(@RequestBody Map<String,Double> param){
+    public List<MapFlagDto> randomFlag10(@RequestBody Map<String, Double> param) {
         Double startLatitude = param.get("startLatitude");
-        Double startLongitude= param.get("startLongitude");
-        Double endLatitude= param.get("endLatitude");
-        Double endLongitude= param.get("endLongitude");
-        return mapService.randomMap( startLatitude,  startLongitude,  endLatitude,  endLongitude, 10);
+        Double startLongitude = param.get("startLongitude");
+        Double endLatitude = param.get("endLatitude");
+        Double endLongitude = param.get("endLongitude");
+        return mapService.randomMap(startLatitude, startLongitude, endLatitude, endLongitude, 10);
     }
 }

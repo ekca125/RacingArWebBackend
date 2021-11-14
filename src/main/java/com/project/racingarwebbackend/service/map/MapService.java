@@ -37,10 +37,10 @@ public class MapService {
         return find(id);
     }
 
-    public List<MapFlagDto> mapFlag(Double startLatitude, Double startLongitude, Double endLatitude, Double endLongitude){
-        return roadAddressRepository.queryRange(startLatitude,  startLongitude,  endLatitude,  endLongitude)
+    public List<MapFlagDto> mapFlag(Double startLatitude, Double startLongitude, Double endLatitude, Double endLongitude) {
+        return roadAddressRepository.queryRange(startLatitude, startLongitude, endLatitude, endLongitude)
                 .stream()
-                .map((entity)->new MapFlagDto(
+                .map((entity) -> new MapFlagDto(
                         entity.getId(),
                         entity.getLatitude(),
                         entity.getLongitude()
@@ -48,8 +48,8 @@ public class MapService {
                 .collect(Collectors.toList());
     }
 
-    public List<MapFlagDto> randomMap(Double startLatitude, Double startLongitude, Double endLatitude, Double endLongitude, long limit){
-        List<MapFlagDto> mapFlagDtoList = mapFlag(startLatitude,  startLongitude,  endLatitude,  endLongitude);
+    public List<MapFlagDto> randomMap(Double startLatitude, Double startLongitude, Double endLatitude, Double endLongitude, long limit) {
+        List<MapFlagDto> mapFlagDtoList = mapFlag(startLatitude, startLongitude, endLatitude, endLongitude);
         Collections.shuffle(mapFlagDtoList);
 
         return mapFlagDtoList.stream()
