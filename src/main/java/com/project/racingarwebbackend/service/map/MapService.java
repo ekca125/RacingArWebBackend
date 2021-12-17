@@ -31,15 +31,19 @@ public class MapService {
         long maxSize = roadAddressRepository.count() - 1;
         return findAddress(ThreadLocalRandom.current().nextLong(maxSize));
     }
-
+    
+    //최대 10000건으로 제한
     public List<MapFlagDto> rangeAddress(Double startLatitude, Double startLongitude, Double endLatitude, Double endLongitude) {
-        return roadAddressRepository.queryRange(startLatitude, startLongitude, endLatitude, endLongitude)
+        List<RoadAddress> addressList = roadAddressRepository.queryRange(startLatitude, startLongitude, endLatitude, endLongitude);
+        Collections.shuffle(addressList);
+        return addressList
                 .stream()
                 .map((entity) -> new MapFlagDto(
                         entity.getId(),
                         entity.getLatitude(),
                         entity.getLongitude()
                 ))
+                .limit(10000)
                 .collect(Collectors.toList());
     }
 
