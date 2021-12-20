@@ -1,6 +1,5 @@
 package com.project.racingarwebbackend.web;
 
-import com.project.racingarwebbackend.web.dto.MapFlagDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class MapApiControllerTest {
@@ -23,8 +21,7 @@ class MapApiControllerTest {
 
     @Test
     void findAddress() {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/address/id=1",
-                String.class)).contains("latitude");
+
     }
 
     @Test
@@ -69,5 +66,31 @@ class MapApiControllerTest {
 
         String response = this.restTemplate.postForEntity(url,param,String.class).toString();
         assertThat(response).contains("latitude");
+    }
+
+    @Test
+    void findById() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/address/id=1",
+                String.class)).contains("latitude");
+    }
+
+    @Test
+    void drawRandom() {
+    }
+
+    @Test
+    void drawMapRangeAddress() {
+    }
+
+    @Test
+    void drawMapRangeAddress10() {
+    }
+
+    @Test
+    void drawMapRangeAddress50() {
+    }
+
+    @Test
+    void drawMapRangeAddress100() {
     }
 }

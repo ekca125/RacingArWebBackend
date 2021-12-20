@@ -1,8 +1,10 @@
 package com.project.racingarwebbackend.service.map;
 
+import com.google.gson.Gson;
 import com.project.racingarwebbackend.domain.map.RoadAddress;
 import com.project.racingarwebbackend.domain.map.RoadAddressRepository;
-import com.project.racingarwebbackend.web.dto.MapFlagDto;
+import com.project.racingarwebbackend.web.dto.AddressDto;
+import com.project.racingarwebbackend.web.dto.MapRange;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,45 +17,49 @@ import java.util.stream.Collectors;
 @Service
 public class MapService {
     final private RoadAddressRepository roadAddressRepository;
+    final static private int LIMIT_SIZE = 10000;
 
-    public MapFlagDto findAddress(Long id) {
-        RoadAddress entity = roadAddressRepository
+    public AddressDto findById(long id){
+        RoadAddress roadAddress = roadAddressRepository
                 .findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 ID가 존재하지 않습니다. id = " + id));
-        return new MapFlagDto(
-                entity.getId(),
-                entity.getLatitude(),
-                entity.getLongitude()
-        );
+        return new AddressDto(roadAddress);
     }
 
-    public MapFlagDto randomAddress() {
+    public AddressDto drawRandom() {
         long maxSize = roadAddressRepository.count() - 1;
-        return findAddress(ThreadLocalRandom.current().nextLong(maxSize));
+        return findById(ThreadLocalRandom.current().nextLong(maxSize));
     }
-    
-    //최대 10000건으로 제한
-    public List<MapFlagDto> rangeAddress(Double startLatitude, Double startLongitude, Double endLatitude, Double endLongitude) {
-        List<RoadAddress> addressList = roadAddressRepository.queryRange(startLatitude, startLongitude, endLatitude, endLongitude);
+
+    // 초기 가공
+    public List<AddressDto> drawMapRangeAddress(MapRange mapRange){
+        List<RoadAddress> addressList = roadAddressRepository.queryRange(
+                mapRange.getStartLatitude(),
+                mapRange.getStartLongitude(),
+                mapRange.getEndLatitude(),
+                mapRange.getEndLongitude());
         Collections.shuffle(addressList);
         return addressList
                 .stream()
-                .map((entity) -> new MapFlagDto(
-                        entity.getId(),
-                        entity.getLatitude(),
-                        entity.getLongitude()
-                ))
-                .limit(10000)
+                .limit(LIMIT_SIZE)
+                .map(AddressDto::new)
                 .collect(Collectors.toList());
     }
 
-    public List<MapFlagDto> rangeRandomAddress(Double startLatitude, Double startLongitude, Double endLatitude, Double endLongitude, long limit) {
-        List<MapFlagDto> mapFlagDtoList = rangeAddress(startLatitude, startLongitude, endLatitude, endLongitude);
-        Collections.shuffle(mapFlagDtoList);
-
-        return mapFlagDtoList.stream()
+    // 중간 가공
+    public List<AddressDto> drawMapRangeAddressLimit(MapRange mapRange, int limit) {
+        List<AddressDto> addressDtoList = drawMapRangeAddress(mapRange);
+        Collections.shuffle(addressDtoList);
+        return addressDtoList
+                .stream()
                 .limit(limit)
                 .collect(Collectors.toList());
     }
 
+    // 최종 가공
+    public String drawMapRangeAddressLimitJson(MapRange mapRange, int limit) {
+        List<AddressDto> addressDtoList = drawMapRangeAddressLimit(mapRange,limit);
+        Gson gson = new Gson();
+        return gson.toJson(addressDtoList);
+    }
 }
