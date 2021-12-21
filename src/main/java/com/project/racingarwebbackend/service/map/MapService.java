@@ -56,9 +56,4 @@ public class MapService {
                 .collect(Collectors.toList());
     }
 
-    public List<AddressDto> drawMapRangeAddressJsonLimit(String mapRangeJson, int limit) {
-        Gson gson = new Gson();
-        MapRange mapRange = gson.fromJson(mapRangeJson, MapRange.class);
-        return drawMapRangeAddressLimit(mapRange,limit);
-    }
 }
