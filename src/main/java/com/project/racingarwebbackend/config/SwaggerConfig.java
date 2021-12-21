@@ -24,9 +24,9 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        String description = "Welcome Log Company";
+        String description = "Welcome RWAB";
         return new ApiInfoBuilder()
-                .title("SWAGGER TEST")
+                .title("SWAGGER RWAB")
                 .description(description)
                 .version("1.0")
                 .build();
