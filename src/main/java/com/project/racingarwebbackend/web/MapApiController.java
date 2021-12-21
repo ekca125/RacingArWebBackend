@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/address")
+@RequestMapping(value = "/api/v1/address", method = {RequestMethod.GET, RequestMethod.POST})
 public class MapApiController {
     private final MapService mapService;
 
