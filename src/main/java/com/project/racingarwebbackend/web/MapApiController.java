@@ -34,22 +34,16 @@ public class MapApiController {
 
     @PostMapping("/api/v1/address/draw/range-limit-10")
     public List<AddressDto> drawMapRangeAddress10(@RequestBody String requestJson) {
-        Gson gson = new Gson();
-        MapRange mapRange = gson.fromJson(requestJson, MapRange.class);
-        return mapService.drawMapRangeAddressLimit(mapRange, 10);
+        return mapService.drawMapRangeAddressJsonLimit(requestJson, 10);
     }
 
     @PostMapping("/api/v1/address/draw/range-limit-50")
     public List<AddressDto> drawMapRangeAddress50(@RequestBody String requestJson) {
-        Gson gson = new Gson();
-        MapRange mapRange = gson.fromJson(requestJson, MapRange.class);
-        return mapService.drawMapRangeAddressLimit(mapRange, 50);
+        return mapService.drawMapRangeAddressJsonLimit(requestJson, 50);
     }
 
     @PostMapping("/api/v1/address/draw/range-limit-100")
     public List<AddressDto> drawMapRangeAddress100(@RequestBody String requestJson) {
-        Gson gson = new Gson();
-        MapRange mapRange = gson.fromJson(requestJson, MapRange.class);
-        return mapService.drawMapRangeAddressLimit(mapRange, 100);
+        return mapService.drawMapRangeAddressJsonLimit(requestJson, 100);
     }
 }

@@ -99,7 +99,8 @@ class MapApiControllerTest {
         param.put("endLatitude",endLatitude);
         param.put("endLongitude",endLongitude);
 
-        String response = this.restTemplate.postForEntity(url,param,String.class).toString();
+        String response = this.restTemplate.postForEntity(url,param,String.class).getBody();
         assertThat(response).contains("latitude");
+        System.out.println(response);
     }
 }
