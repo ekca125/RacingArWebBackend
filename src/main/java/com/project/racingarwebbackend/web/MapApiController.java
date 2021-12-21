@@ -12,37 +12,38 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api/v1/address")
 public class MapApiController {
     private final MapService mapService;
 
-    @GetMapping("/api/v1/address/id={id}")
+    @GetMapping("/id={id}")
     public AddressDto findById(@PathVariable long id) {
         return mapService.findById(id);
     }
 
-    @GetMapping("/api/v1/address/draw/random")
+    @GetMapping("/draw/random")
     public AddressDto drawRandom() {
         return mapService.drawRandom();
     }
 
-    @PostMapping("/api/v1/address/draw/range")
+    @PostMapping("/draw/range")
     public List<AddressDto> drawMapRangeAddress(@RequestBody String requestJson) {
         Gson gson = new Gson();
         MapRange mapRange = gson.fromJson(requestJson, MapRange.class);
         return mapService.drawMapRangeAddress(mapRange);
     }
 
-    @PostMapping("/api/v1/address/draw/range-limit-10")
+    @PostMapping("/draw/range-limit-10")
     public List<AddressDto> drawMapRangeAddress10(@RequestBody String requestJson) {
         return mapService.drawMapRangeAddressJsonLimit(requestJson, 10);
     }
 
-    @PostMapping("/api/v1/address/draw/range-limit-50")
+    @PostMapping("/draw/range-limit-50")
     public List<AddressDto> drawMapRangeAddress50(@RequestBody String requestJson) {
         return mapService.drawMapRangeAddressJsonLimit(requestJson, 50);
     }
 
-    @PostMapping("/api/v1/address/draw/range-limit-100")
+    @PostMapping("/draw/range-limit-100")
     public List<AddressDto> drawMapRangeAddress100(@RequestBody String requestJson) {
         return mapService.drawMapRangeAddressJsonLimit(requestJson, 100);
     }

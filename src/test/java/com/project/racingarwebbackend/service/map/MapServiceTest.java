@@ -59,20 +59,4 @@ class MapServiceTest {
         assertThat(addressDtoList.size()).isLessThanOrEqualTo(limit);
     }
 
-    @Test
-    void drawMapRangeAddressLimitJson() {
-        double startLatitude = 35.0979529784;
-        double startLongitude = 129.0219886069;
-        double endLatitude = 35.1066801454;
-        double endLongitude = 129.0290353612;
-        MapRange mapRange = MapRange.builder()
-                .startLatitude(startLatitude)
-                .startLongitude(startLongitude)
-                .endLatitude(endLatitude)
-                .endLongitude(endLongitude)
-                .build();
-        int limit = 10;
-        String json = mapService.drawMapRangeAddressLimitJson(mapRange, 10);
-        assertThat(json).isNotNull();
-    }
 }
